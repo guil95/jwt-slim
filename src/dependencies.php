@@ -2,10 +2,11 @@
 // DIC configuration
 
 $container = $app->getContainer();
-/**
- * Token do nosso JWT
- */
-$container['secretkey'] = "secretloko";
+$dotenv  =  new  Dotenv\Dotenv('..', 'config.env'); 
+
+$dotenv->load();
+
+$container["secretkey"] = getenv("JWT_SECRET");
 // view renderer
 $container['renderer'] = function ($c) {
     $settings = $c->get('settings')['renderer'];
